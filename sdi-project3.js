@@ -6,6 +6,7 @@
 //list global variables
 var damagedFruit = false;
 var shelfFull = false;
+var damageStatus = "All fruit checked";
 
 //declare JSON data
 var availableFruit = {
@@ -33,11 +34,17 @@ var availableFruit = {
 	]
 }
 
+//while fruits are available check for damage
+function damageCheck (damageStatus)
+{
 do
 {	
 	for(i = 0; i <= availableFruit.Fruit.length; i++)
 	{
-		var damagedFruit = confirm("Is the " + availableFruit.Fruit[i].Name + " ok for consumption?");
+		//check shelf capacity
+		checkShelfCapacity();
+		
+		var damagedFruit = Boolean(confirm("Is the " + availableFruit.Fruit[i].Name + " ok for consumption?"));
 		if (damagedFruit == true)
 		{
 			var goodFruit = "The " + availableFruit.Fruit[i].Name + " is OK.";
@@ -47,3 +54,24 @@ do
 		}
 	}
 }while (i <= availableFruit.Fruit.length);
+
+// return damage status to verfy all items checked in array
+var damageStatus = "All fruit checked";
+return damageStatus;
+}
+
+function checkShelfCapacity()
+{
+	var shelfStatus = prompt("What is the shelf capacity perecntage?", 100);
+	var shelfCapacity = parseInt(shelfStatus);
+	if (shelfCapacity != 100)
+	{
+		console.log("Shelf needs to be filled.");
+	} else {
+		console.log("Shelf is full.");	
+		}
+}
+
+//call damangeCheck
+damageCheck(checkShelfCapacity());
+
