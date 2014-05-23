@@ -5,7 +5,7 @@
 
 //list global variables
 var damagedFruit = false;
-var shelfCapacity = 100;
+var shelfFull = false;
 
 //declare JSON data
 var availableFruit = {
@@ -33,3 +33,17 @@ var availableFruit = {
 	]
 }
 
+do
+{	
+	for(i = 0; i <= availableFruit.Fruit.length; i++)
+	{
+		var damagedFruit = confirm("Is the " + availableFruit.Fruit[i].Name + " ok for consumption?");
+		if (damagedFruit == true)
+		{
+			var goodFruit = "The " + availableFruit.Fruit[i].Name + " is OK.";
+			console.log(goodFruit);
+		} else {
+			console.log("The " + availableFruit.Fruit[i].Name + " needs to be discarded.")
+		}
+	}
+}while (i <= availableFruit.Fruit.length);
